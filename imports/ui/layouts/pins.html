@@ -1,0 +1,21 @@
+<template name="pins">
+    <div id="pins">
+        {{#each pins}}
+        {{> card}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="card">
+    <div class="card">
+        <div class="img-wrapper">
+            <img src="{{url}}">
+        </div>
+        <div class="title">
+            {{title}}
+        </div>
+        <div class="author">
+            <strong>{{author}}</strong>
+        </div>
+    </div>
+</template>
