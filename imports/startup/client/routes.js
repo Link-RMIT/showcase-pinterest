@@ -5,7 +5,7 @@ import '../../ui/layouts/app-body.js';
 FlowRouter.route('/',{
     name: 'App.home',
     action(){
-        BlazeLayout.render('App_body', {main: "pins"});
+        BlazeLayout.render('App_body', {main: "pins", filter: {}});
     },
 });
 
@@ -19,7 +19,7 @@ FlowRouter.route('/recent',{
 FlowRouter.route('/my-pins',{
     name: 'App.home',
     action(){
-        BlazeLayout.render('App_body', {main: "my-pins"});
+        BlazeLayout.render('App_body', {main: "pins"});
     },
 });
 

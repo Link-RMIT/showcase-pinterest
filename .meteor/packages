@@ -26,3 +26,8 @@ less
 aldeed:simple-schema
 mdg:validated-method
 aldeed:collection2
+twbs:bootstrap
+accounts-base
+accounts-password
+accounts-twitter
+ian:accounts-ui-bootstrap-3

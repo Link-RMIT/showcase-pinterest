@@ -1,15 +1,31 @@
 import './app-body.html';
 import './pins.html';
 import './add.html';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+
 
 import { Template } from 'meteor/templating';
 import { add } from '../../api/cards/methods.js';
 import { Cards } from '../../api/cards/cards.js';
+import './nav.js';
+
+
+import { Accounts } from 'meteor/accounts-base';
+Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_ONLY',
+});
+
+
 
 Template.pins.helpers({
     pins(){
-        console.log('pins');
-        return Cards.find({}).fetch();
+        console.log('pins:');
+        console.log(FlowRouter.current().route.path);
+        return Cards.find({
+                '/my-pins':{},
+                '/recent':{},
+            }[FlowRouter.current().route.path] || {}
+        ).fetch();
     },
 });
 
