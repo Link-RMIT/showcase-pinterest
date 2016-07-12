@@ -23,3 +23,6 @@ kadira:flow-router
 kadira:blaze-layout
 sjors:meteor-masonry
 less
+aldeed:simple-schema
+mdg:validated-method
+aldeed:collection2
