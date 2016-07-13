@@ -6,6 +6,35 @@
     </div>
 </template>
 
+<template name="recent">
+    <div id="pins">
+        {{#each pins }}
+        {{> card}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="mypins">
+    {{#if currentUser}}
+    <div id="pins">
+        {{#each pins }}
+        {{> mycard}}
+        {{/each}}
+    </div>
+    {{/if}}
+</template>
+
+
+<template name="user">
+    {{#if currentUser}}
+    <div id="pins">
+        {{#each pins }}
+        {{> card}}
+        {{/each}}
+    </div>
+    {{/if}}
+</template>
+
 <template name="card">
     <div class="card">
         <div class="img-wrapper">
@@ -15,7 +44,32 @@
             {{title}}
         </div>
         <div class="author">
-            <strong>{{author}}</strong>
+            <a href="/user/{{userId}}">{{userName}}</a>
+        </div>
+    </div>
+</template>
+
+<template name="mycard">
+    <div class="card">
+        <div class="img-wrapper">
+            <img src="{{url}}">
+        </div>
+        <div class="title">
+            {{title}}
+        </div>
+        <a href="#delete" class="delete">
+            Delete
+        </a>
+    </div>
+</template>
+
+<template name="usercard">
+    <div class="card">
+        <div class="img-wrapper">
+            <img src="{{url}}">
+        </div>
+        <div class="title">
+            {{title}}
         </div>
     </div>
 </template>

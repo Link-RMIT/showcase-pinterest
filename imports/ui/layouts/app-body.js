@@ -5,7 +5,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 
 import { Template } from 'meteor/templating';
-import { add } from '../../api/cards/methods.js';
+import { add,remove } from '../../api/cards/methods.js';
 import { Cards } from '../../api/cards/cards.js';
 import './nav.js';
 
@@ -19,20 +19,51 @@ Accounts.ui.config({
 
 Template.pins.helpers({
     pins(){
-        console.log('pins:');
-        console.log(FlowRouter.current().route.path);
+        return Cards.find({},{
+            transform:(pin)=>{
+                user = Meteor.users.findOne({_id:pin.userId});
+                if(user){
+                    pin.userName = user.username;
+                }
+                return pin;
+            }
+        }).fetch();
+    }
+});
+
+Template.mypins.helpers({
+    pins(){
+        return Cards.find({userId: Meteor.userId()}).fetch();
+    }
+});
+
+Template.recent.helpers({
+    pins(){
+        return Cards.find({},{
+            transform:(pin)=>{
+                user = Meteor.users.findOne({_id:pin.userId});
+                if(user){
+                    pin.userName = user.username;
+                }
+                return pin;
+            }
+        }).fetch();
+    }
+});
+
+Template.user.helpers({
+    pins(){
+        console.log(FlowRouter.getParam('_id'));
         return Cards.find({
-                '/my-pins':{},
-                '/recent':{},
-            }[FlowRouter.current().route.path] || {}
-        ).fetch();
-    },
+            userId: FlowRouter.getParam('_id')
+        });
+    }
 });
 
 
 Template.pins.rendered = function() {
-    /*
     var $container = $('#pins');
+    /*
     $.resize(()=>{
         $container.masonry({
             itemSelector : '.card',
@@ -42,8 +73,22 @@ Template.pins.rendered = function() {
             resize: true,
             percentPosition: true,
             gutter:10,
-        })});*/
+        })});
+     */
 };
+
+const on_api_error = (err)=>{
+    if(err){
+        console.log(err);
+    }
+};
+
+Template.mycard.events({
+    'click a'(event){
+        console.log(this);
+        remove.call({id:this._id},on_api_error);
+    }
+});
 
 Template.add.events({
     'submit form'(event){
@@ -55,10 +100,7 @@ Template.add.events({
         const cardId = add.call({
             url: target.url.value,
             title: target.title.value,
-        },(err)=>{
-            if(err){
-                console.log(err);
-            }
-        });
+        },on_api_error);
+        FlowRouter.go('/my-pins')
     }
 });

@@ -10,25 +10,33 @@ FlowRouter.route('/',{
 });
 
 FlowRouter.route('/recent',{
-    name: 'App.home',
+    name: 'App.recent',
     action(){
         BlazeLayout.render('App_body', {main: "recent"});
     },
 });
 
 FlowRouter.route('/my-pins',{
-    name: 'App.home',
+    name: 'App.mypins',
     action(){
-        BlazeLayout.render('App_body', {main: "pins"});
+        BlazeLayout.render('App_body', {main: "mypins"});
     },
 });
 
 FlowRouter.route('/add',{
-    name: 'App.home',
+    name: 'App.add',
     action(){
         BlazeLayout.render('App_body', {main: "add"});
     },
 });
+
+FlowRouter.route('/user/:_id',{
+    name: 'App.user',
+    action(params){
+        BlazeLayout.render('App_body', {main: "user"});
+    },
+});
+
 
 FlowRouter.notFound = {
     action() {

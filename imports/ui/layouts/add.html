@@ -1,10 +1,18 @@
 <template name="add">
+    {{#if currentUser}}
     <fieldset>
         <form>
             <h4 class="text-center">Add new pin</h4>
-            <input type="text" name="title" placeholder="title" />
-            <input type="text" name="url" placeholder="url" />
-            <input type="submit" value="Submit"/>
+            <div class="col-lg-10">
+                <input class="form-control" type="text" name="title" placeholder="title" />
+            </div>
+            <div class="col-lg-10">
+                <input  class="form-control" type="text" name="url" placeholder="url" />
+            </div>
+            <div class="col-lg-10">
+                <input class="btn btn-primary" type="submit" value="Submit"/>
+            </div>
         </form>
     </fieldset>
+    {{/if}}
 </template>
