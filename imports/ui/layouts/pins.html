@@ -40,11 +40,13 @@
         <div class="img-wrapper">
             <img src="{{url}}" onerror="this.src = 'http://pintech.herokuapp.com/placeholder.png'">
         </div>
-        <div class="title">
-            {{title}}
-        </div>
-        <div class="author">
-            <a href="/user/{{userId}}">{{userName}}</a>
+        <div class="caption text-center">
+            <div class="title">
+                {{title}}
+            </div>
+            <div class="author">
+                <a href="/user/{{userId}}">{{userName}}</a>
+            </div>
         </div>
     </div>
 </template>
@@ -54,12 +56,14 @@
         <div class="img-wrapper">
             <img src="{{url}}" onerror="this.src = 'http://pintech.herokuapp.com/placeholder.png'">
         </div>
-        <div class="title">
-            {{title}}
+        <div class="caption text-center">
+            <div class="title">
+                {{title}}
+            </div>
+            <a href="#delete" class="delete">
+                Delete
+            </a>
         </div>
-        <a href="#delete" class="delete">
-            Delete
-        </a>
     </div>
 </template>
 
@@ -68,8 +72,10 @@
         <div class="img-wrapper">
             <img src="{{url}}" onerror="this.src = 'http://pintech.herokuapp.com/placeholder.png'">
         </div>
-        <div class="title">
-            {{title}}
+        <div class="caption text-center">
+            <div class="title">
+                {{title}}
+            </div>
         </div>
     </div>
 </template>
