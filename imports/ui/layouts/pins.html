@@ -21,24 +21,24 @@
         {{> mycard}}
         {{/each}}
     </div>
+    {{else}}
+    {{> alert}}
     {{/if}}
 </template>
 
 
 <template name="user">
-    {{#if currentUser}}
     <div id="pins">
         {{#each pins }}
         {{> card}}
         {{/each}}
     </div>
-    {{/if}}
 </template>
 
 <template name="card">
     <div class="card">
         <div class="img-wrapper">
-            <img src="{{url}}">
+            <img src="{{url}}" onerror="this.src = 'http://pintech.herokuapp.com/placeholder.png'">
         </div>
         <div class="title">
             {{title}}
@@ -52,7 +52,7 @@
 <template name="mycard">
     <div class="card">
         <div class="img-wrapper">
-            <img src="{{url}}">
+            <img src="{{url}}" onerror="this.src = 'http://pintech.herokuapp.com/placeholder.png'">
         </div>
         <div class="title">
             {{title}}
@@ -66,10 +66,18 @@
 <template name="usercard">
     <div class="card">
         <div class="img-wrapper">
-            <img src="{{url}}">
+            <img src="{{url}}" onerror="this.src = 'http://pintech.herokuapp.com/placeholder.png'">
         </div>
         <div class="title">
             {{title}}
+        </div>
+    </div>
+</template>
+
+<template name="alert" >
+    <div id="main" class="row-fluid">
+        <div class="alert alert-danger">
+            You can't get here! Please log-in.
         </div>
     </div>
 </template>

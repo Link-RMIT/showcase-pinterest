@@ -60,10 +60,10 @@ Template.user.helpers({
     }
 });
 
-
-Template.pins.rendered = function() {
-    var $container = $('#pins');
+Template.pins.rendered = () => {
     /*
+    var $container = $('#pins');
+
     $.resize(()=>{
         $container.masonry({
             itemSelector : '.card',
