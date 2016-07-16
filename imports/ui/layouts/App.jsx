@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
 import Bootstrap from "bootstrap-without-jquery";
+import Nav from "./Nav.jsx";
 
 
-class MainPage extends React.Component {
+class Layout extends React.Component {
     render(){
         return (
             <div>
+                <Nav />
                 <h1>main</h1>
                 {this.props.children}
             </div>
@@ -47,7 +49,7 @@ export default class App extends React.Component {
         console.log('render app');
         return (
             <Router history={hashHistory}>
-                <Route path="/" component={MainPage}>
+                <Route path="/" component={Layout}>
                     <Route path="recent" name="recent" component={Recent}></Route>
                     <Route path="my-pins" name="my-pins" component={MyPins}></Route>
                     <Route path="add" name="add" component={Add}></Route>
