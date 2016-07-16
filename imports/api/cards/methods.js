@@ -33,7 +33,7 @@ export const remove = new ValidatedMethod({
         if(!(card.userId === this.userId)){
             throw new Meteor.Error(
                 'cards.remove.accessDenied',
-                'Cannot remove pins is not created by you.'
+                'Cannot remove pins are not created by you.'
             );
         }
         Cards.remove(id);
