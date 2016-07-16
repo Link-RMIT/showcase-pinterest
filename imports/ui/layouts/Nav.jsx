@@ -8,11 +8,12 @@ export default class Nav extends React.Component {
             ['recent', 'Recent'],
             ['my-pins', 'My Pins'],
             ['add', 'Add'],
-        ].map((i)=>{ return (
-            <li activeClassName="active" onlyActiveOnIndex={true}>
-                <IndexLink to={i[0]} onClick="">{i[1]}</IndexLink>
+        ].map((i,index)=>{ return (
+            <li key={index}>
+                <IndexLink to={i[0]}>{i[1]}</IndexLink>
             </li>
         )});
+
         return (
             <nav className="navbar navbar-inverse " role="navigation">
                 <div className="navbar-header">
