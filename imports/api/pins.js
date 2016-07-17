@@ -3,15 +3,15 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 
 
-export const Cards = new Mongo.Collection('Cards');
+export const Pins = new Mongo.Collection('Pins');
 
-Cards.deny({
+Pins.deny({
     insert(){ return true; },
     update(){ return true; },
     remove(){ return true; },
 });
 
-Cards.schema = new SimpleSchema({
+Pins.schema = new SimpleSchema({
     _id: { type: String, regEx: SimpleSchema.RegEx.Id},
     title: { type: String },
     createdAt: { type: Date,  denyUpdate: true },
@@ -19,7 +19,7 @@ Cards.schema = new SimpleSchema({
     url: { type: String, regEx: SimpleSchema.RegEx.Url },
 });
 
-Cards.publicFields = {
+Pins.publicFields = {
     title: 1,
     createdAt: 1,
     url: 1,
@@ -27,4 +27,4 @@ Cards.publicFields = {
 };
 
 //"meteor add aldeed:collection2" required
-Cards.attachSchema(Cards.schema);
+Pins.attachSchema(Pins.schema);

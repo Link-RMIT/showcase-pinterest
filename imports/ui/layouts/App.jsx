@@ -2,72 +2,42 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
+
 import Bootstrap from "bootstrap-without-jquery";
 import Nav from "./Nav.jsx";
 import { Accounts } from 'meteor/accounts-base';
+
+import AllPins from './components/AllPins.jsx'
+import { Add } from './components/Add.jsx'
+
+
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_ONLY',
 });
 
+import {add,remove} from '../../api/methods.js';
+
 class Layout extends React.Component {
     render(){
-        console.log(Object.keys(this.props.children));
+        console.log(Object.keys(this.props.children||{}));
         return (
             <div>
                 <Nav />
-                <h1>main</h1>
                 {this.props.children}
             </div>
         )
     }
 }
 
-class Pin extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            url:'/',
-            title:'foo',
-        };
-    }
-    onLoadImgFail(event){
-        this.setState({'url':'http://pintech.herokuapp.com/placeholder.png'});
-    }
-    render(){
-        return (
-            <div className="pin">
-                <div className="img-wrapper">
-                    <img src={this.state.url} onError={this.onLoadImgFail.bind(this)} />
-                </div>
-                <div className="caption text-center">
-                    <div className="title">
-                        {this.state.title}
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
 
-
-class Recent extends React.Component {
-    render(){
-        return (<div id="pins"><Pin /><Pin /><Pin/></div>)
-    }
-}
 
 class MyPins extends React.Component {
+
     render(){
         return (<h1>mypins</h1>)
     }
 }
 
-class Add extends React.Component {
-    render(){
-        console.log('add');
-        return (<h1>add</h1>)
-    }
-}
 
 class User  extends React.Component {
     render(){
@@ -81,7 +51,7 @@ export default class App extends React.Component {
         return (
             <Router history={hashHistory}>
                 <Route path="/" component={Layout}>
-                    <Route path="recent" name="recent" component={Recent}></Route>
+                    <Route path="recent" name="recent" component={AllPins}></Route>
                     <Route path="my-pins" name="my-pins" component={MyPins}></Route>
                     <Route path="add" name="add" component={Add}></Route>
                     <Route path="user" name="user" component={User}></Route>
@@ -107,4 +77,6 @@ function login_required(target){
         )
     }
 }
-[Add,MyPins].forEach(login_required);
+
+
+//[Add,MyPins].forEach(login_required);
