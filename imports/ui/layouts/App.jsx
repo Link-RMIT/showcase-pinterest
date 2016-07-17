@@ -8,8 +8,9 @@ import Nav from "./Nav.jsx";
 import { Accounts } from 'meteor/accounts-base';
 
 import AllPins from './components/AllPins.jsx'
+import MyPins from './components/MyPins.jsx'
+import UserPins from './components/UserPins.jsx'
 import { Add } from './components/Add.jsx'
-
 
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_ONLY',
@@ -30,31 +31,17 @@ class Layout extends React.Component {
 }
 
 
-
-class MyPins extends React.Component {
-
-    render(){
-        return (<h1>mypins</h1>)
-    }
-}
-
-
-class User  extends React.Component {
-    render(){
-        return (<h1>user</h1>)
-    }
-}
-
 export default class App extends React.Component {
     render(){
         console.log('render app');
         return (
             <Router history={hashHistory}>
                 <Route path="/" component={Layout}>
+                    <IndexRoute component={AllPins} />
                     <Route path="recent" name="recent" component={AllPins}></Route>
                     <Route path="my-pins" name="my-pins" component={MyPins}></Route>
                     <Route path="add" name="add" component={Add}></Route>
-                    <Route path="user" name="user" component={User}></Route>
+                    <Route path="user/:userId" name="user" component={UserPins}></Route>
                 </Route>
             </Router>
         );
@@ -62,12 +49,12 @@ export default class App extends React.Component {
 }
 
 
-
+/*
 function login_required(target){
     const render = target.prototype.render;
-    console.log(render.apply)
+    console.log('==========');
+    console.log(target.prototype.onSubmit);
     target.prototype.render = (...args)=>{
-        console.log(Meteor.userId());
         return Meteor.userId() && render.apply(this,args) || (
             <div className="row-fluid">
                 <div className="alert alert-danger">
@@ -76,7 +63,8 @@ function login_required(target){
             </div>
         )
     }
+    console.log(target.prototype.onSubmit);
+    console.log('==========');
 }
-
-
-//[Add,MyPins].forEach(login_required);
+[Add,MyPins].forEach(login_required);
+*/

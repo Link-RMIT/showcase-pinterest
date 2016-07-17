@@ -1,14 +1,16 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
+import AccountsUIWrapper from './components/AccountsUIWrapper.jsx'
+import A from './components/AccountsUIWrapper.jsx'
 
 export default class Nav extends React.Component {
-
     render(){
-        const routes = [
+        const routes = ([
             ['recent', 'Recent'],
+        ].concat(Meteor.userId()?[
             ['my-pins', 'My Pins'],
             ['add', 'Add'],
-        ].map((i,index)=>{ return (
+        ]:[])).map((i,index)=>{ return (
             <li key={index}>
                 <IndexLink to={i[0]}>{i[1]}</IndexLink>
             </li>
@@ -28,7 +30,7 @@ export default class Nav extends React.Component {
                         {routes}
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        {"login button here"}
+                        <AccountsUIWrapper />
                     </ul>
                 </div>
             </nav>

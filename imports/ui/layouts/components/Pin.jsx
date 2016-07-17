@@ -1,4 +1,9 @@
 import React from "react";
+import { Link } from "react-router";
+import { add,remove } from '../../../api/methods.js';
+import { store } from '../storage.js'
+
+
 export class BasicPin extends React.Component {
     constructor() {
         super();
@@ -36,24 +41,24 @@ export class PublicPin extends BasicPin{
         const {userId, userName} = props.pin;
         this.state.rest = (
             <div className="author" key="author">
-                <a href="/user/{userId}">{userName}</a>
+                <Link to={"user/"+userId}>{userName}</Link>
             </div>
         );
     }
 }
 
 export class MyPin extends BasicPin{
+    onDelete(){
+        console.log(this.props);
+        console.log('delete');
+    }
     constructor(props){
         super(props);
-        this.state.user = {
-            userId:'1',
-            userName:'foo',
-        }
-        const {userId, userName} = this.state.user;
+        //const {userId, userName} = this.props.pin;
         this.state.rest = (
-            <a href="#delete" class="delete">
+            <button className="btn btn-link delete" onClick={()=>{this.props.onDelete(this.props.pin)}}>
                 Delete
-            </a>
+            </button>
         );
     }
 }
