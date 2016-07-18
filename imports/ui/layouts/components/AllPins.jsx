@@ -16,8 +16,11 @@ export class AllPins extends React.Component {
             );
         });
         return (
-            <div id="pins">
-                { pins_list }
+            <div>
+                <h1>All Pins</h1>
+                <div id="pins">
+                    { pins_list }
+                </div>
             </div>
         )
     }/*

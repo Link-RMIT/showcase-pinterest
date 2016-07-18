@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 
 export class BasicPin extends React.Component {
-    constructor() {
+    constructor(props) {
         super(props);
         this.state = Object.assign({pin:{
             url:'/',

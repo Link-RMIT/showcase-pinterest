@@ -24,17 +24,20 @@ class MyPins extends React.Component {
             );
         });
         return Meteor.userId()?
-             (
-                <div id="pins">
-                    { pins_list }
-                </div>
-            ):(
-                <div className="row-fluid">
-                    <div className="alert alert-danger">
-                        You can't get here! Please log-in.
-                    </div>
-                </div>
-            )
+               (
+                   <div>
+                       <h1>My Pins</h1>
+                       <div id="pins">
+                           { pins_list }
+                       </div>
+                   </div>
+               ):(
+                   <div className="row-fluid">
+                       <div className="alert alert-danger">
+                           You can't get here! Please log-in.
+                       </div>
+                   </div>
+               )
     }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { add } from '../../../api/methods.js';
-
+import {  hashHistory } from "react-router";
 export class Add extends React.Component {
     constructor(){
         super();
@@ -15,9 +15,12 @@ export class Add extends React.Component {
             url: this.refs.url.value,
             title: this.refs.title.value,
         },(event)=>{
-            console.log('error');
-            console.log(event);
+            if(event){
+                console.log('error');
+                console.log(event);
+            }
         });
+        this.props.history.push('/my-pins');
     }
     render(){
         console.log('add');
