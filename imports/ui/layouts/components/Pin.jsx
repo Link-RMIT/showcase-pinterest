@@ -1,23 +1,22 @@
 import React from "react";
 import { Link } from "react-router";
-import { add,remove } from '../../../api/methods.js';
-import { store } from '../storage.js'
 
 
 export class BasicPin extends React.Component {
     constructor() {
-        super();
-        this.state = {
+        super(props);
+        this.state = Object.assign({pin:{
             url:'/',
             title:'foo',
             rest:[],
-        };
+        }},{pin:props.pin});
     }
     onLoadImgFail(event){
-        this.setState({'url':'http://pintech.herokuapp.com/placeholder.png'});
+        this.setState(Object.assign(this.state.pin,{'url':'http://pintech.herokuapp.com/placeholder.png'}));
+        console.log(this.state.url);
     }
     render(){
-        const {url,title} = this.props.pin;
+        const {url,title} = this.state.pin;
         return (
             <div className="pin">
                 <div className="img-wrapper">

@@ -5,8 +5,6 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
 import Bootstrap from "bootstrap-without-jquery";
 import Nav from "./Nav.jsx";
-import { Accounts } from 'meteor/accounts-base';
-
 import AllPins from './components/AllPins.jsx'
 import MyPins from './components/MyPins.jsx'
 import UserPins from './components/UserPins.jsx'

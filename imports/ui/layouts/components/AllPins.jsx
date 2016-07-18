@@ -32,9 +32,14 @@ AllPins.propTypes = {
 }
 
 export default createContainer(()=>{
+    const users = Meteor.users.find({}).fetch();
+    console.log('--------------------')
+    console.log(users);
     const pins = PinModel.Pins.find({},{
         transform:(pin)=>{
             user = Meteor.users.findOne({_id:pin.userId});
+            console.log(pin.userId);
+
             if(user){
                 pin.userName = user.username;
             }
